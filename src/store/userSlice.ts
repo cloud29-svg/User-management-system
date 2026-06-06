@@ -1,11 +1,21 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
+type ApiUser = {
+    id: number;
+    name: string;
+    email: string;
+    address: {
+        street: string;
+        city: string;
+    };
+};
+
 export type User = {
     id: number;
     name: string;
     email: string;
-    phone: string;
+    address: string;
 };
 
 export type UserState = {
@@ -22,12 +32,12 @@ const initialState: UserState = {
 
 export const fetchUsers = createAsyncThunk("users/fetchUsers", async () => {
     const response = await fetch("https://jsonplaceholder.typicode.com/users");
-    const data = await response.json();
-    return data.map((user: User) => ({
+    const data: ApiUser[] = await response.json(); 
+    return data.map((user) => ({
         id: user.id,
         name: user.name,
         email: user.email,
-        phone: user.phone,
+        address: `${user.address.street}, ${user.address.city}`, 
     }));
 });
 
@@ -35,7 +45,6 @@ const userSlice = createSlice({
     name: "users",
     initialState,
     reducers: {
-        // ✅ All local — no API calls
         addUser: (state, action: PayloadAction<Omit<User, "id">>) => {
             const newId = state.users.length
                 ? Math.max(...state.users.map((u) => u.id)) + 1

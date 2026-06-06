@@ -10,12 +10,12 @@ type Props = {
 export const UserForm = ({ initialData, onSubmit, submitLabel }: Props) => {
     const [name, setName] = useState(initialData?.name || "");
     const [email, setEmail] = useState(initialData?.email || "");
-    const [phone, setPhone] = useState(initialData?.phone || "");
+    const [address, setAddress] = useState(initialData?.address || "");
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        if (!name || !email || !phone) return;
-        onSubmit({ name, email, phone });
+        if (!name || !email || !address) return;
+        onSubmit({ name, email, address });
     };
 
     return (
@@ -32,9 +32,9 @@ export const UserForm = ({ initialData, onSubmit, submitLabel }: Props) => {
                     placeholder="Enter email" required />
             </div>
             <div className="form-group">
-                <label>Phone Number</label>
-                <input value={phone} onChange={(e) => setPhone(e.target.value)}
-                    placeholder="Enter phone" required />
+                <label>Address</label>
+                <input value={address} onChange={(e) => setAddress(e.target.value)}
+                    placeholder="Enter address" required />
             </div>
             <button type="submit" className="btn-submit">{submitLabel}</button>
         </form>

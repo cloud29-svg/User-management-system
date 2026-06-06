@@ -16,11 +16,12 @@ export const UserCard = ({ user }: Props) => {
             <div className="user-info">
                 <h3 className="user-name">{user.name}</h3>
                 <p className="user-email">{user.email}</p>
-                <p className="user-phone">{user.phone}</p>
+                <p className="user-address">{user.address}</p>
             </div>
             <div className="user-actions">
                 <button className="btn-view"
-                    onClick={() => navigate(`/users/${user.id}`)}>View</button>
+                    onClick={() => navigate(`/users/${user.id}`)}>View
+                    </button>
                 <button className="btn-edit"
                     onClick={() => navigate(`/edit-user/${user.id}`)}>Edit</button>
                 <button className="btn-delete"

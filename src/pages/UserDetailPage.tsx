@@ -30,8 +30,8 @@ export const UserDetailPage = () => {
                         <span className="detail-value">{user.email}</span>
                     </div>
                     <div className="detail-row">
-                        <span className="detail-label">Phone</span>
-                        <span className="detail-value">{user.phone}</span>
+                        <span className="detail-label">Address</span>
+                        <span className="detail-value">{user.address}</span>
                     </div>
                 </div>
                 <button className="btn-edit-full"
